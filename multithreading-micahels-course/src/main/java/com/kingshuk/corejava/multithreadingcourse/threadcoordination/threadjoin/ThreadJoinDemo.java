@@ -21,7 +21,6 @@ public class ThreadJoinDemo {
                         Pair.with(BigInteger.valueOf(78545454), BigInteger.valueOf(8787)));
 
         processCalculatorThreads(numbers, 0, false, false);
-
     }
 
     public static void processCalculatorThreads(List<Pair<BigInteger, BigInteger>> numbers,
