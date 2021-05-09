@@ -1,4 +1,4 @@
-package com.kingshuk.corejava.multithreadingcourse.performance;
+package com.kingshuk.corejava.multithreadingcourse.performance.latency;
 
 import lombok.Getter;
 import org.javatuples.Pair;

@@ -1,4 +1,4 @@
-package com.kingshuk.corejava.multithreadingcourse.performance;
+package com.kingshuk.corejava.multithreadingcourse.performance.latency;
 
 import org.javatuples.Pair;
 
