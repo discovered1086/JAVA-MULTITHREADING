@@ -1,4 +1,4 @@
-package com.kingshuk.corejava.multithreadingcourse.metricsusecase;
+package com.kingshuk.corejava.multithreadingcourse.concurrencyproblems.metricsusecase;
 
 public class MetricsCheckerTest {
 

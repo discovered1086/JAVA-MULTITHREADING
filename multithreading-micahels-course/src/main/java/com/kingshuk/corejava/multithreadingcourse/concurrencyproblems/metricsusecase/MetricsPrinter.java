@@ -1,4 +1,4 @@
-package com.kingshuk.corejava.multithreadingcourse.metricsusecase;
+package com.kingshuk.corejava.multithreadingcourse.concurrencyproblems.metricsusecase;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

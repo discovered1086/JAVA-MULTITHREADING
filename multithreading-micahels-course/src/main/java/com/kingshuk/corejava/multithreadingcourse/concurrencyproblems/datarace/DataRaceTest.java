@@ -1,4 +1,4 @@
-package com.kingshuk.corejava.multithreadingcourse.datarace;
+package com.kingshuk.corejava.multithreadingcourse.concurrencyproblems.datarace;
 
 @SuppressWarnings("java:S106")
 public class DataRaceTest {

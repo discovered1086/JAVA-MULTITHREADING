@@ -1,6 +1,8 @@
-package com.kingshuk.corejava.multithreadingcourse.metricsusecase;
+package com.kingshuk.corejava.multithreadingcourse.concurrencyproblems.metricsusecase;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 import java.util.Random;
 
