@@ -1,19 +1,21 @@
-package com.kingshuk.corejava.multithreadingcourse.reentrantlock;
+package com.kingshuk.corejava.multithreadingcourse.advancedlocking.reentrantreadwritelock.readwritelock;
 
+import com.kingshuk.corejava.multithreadingcourse.advancedlocking.Product;
 import lombok.Data;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 
 @Data
-public class AmazonInventory {
-    private Lock productLock = new ReentrantLock();
+public class AmazonInventoryReadWriteLock {
+    private ReentrantReadWriteLock productLock = new ReentrantReadWriteLock();
+    private ReentrantReadWriteLock.ReadLock readLock = productLock.readLock();
+    private ReentrantReadWriteLock.WriteLock writeLock = productLock.writeLock();
     private Map<String, Product> inventory = new HashMap<>();
 
-    public AmazonInventory() {
+    public AmazonInventoryReadWriteLock() {
         inventory.put("Toothbrush", Product.builder()
                 .productPrice(25.6)
                 .productName("Toothbrush")
@@ -42,19 +44,26 @@ public class AmazonInventory {
     }
 
     public void addProductQuantity(String productName, int quantity) {
-        if (inventory.containsKey(productName)) {
-            Product product = inventory.get(productName);
-            product.setQuantityLeft(product.getQuantityLeft() + quantity);
-            inventory.put(productName, product);
-        } else {
-            System.out.println("We don't sell this product");
+        writeLock.lock();
+        try {
+            if (inventory.containsKey(productName)) {
+                Product product = inventory.get(productName);
+                product.setQuantityLeft(product.getQuantityLeft() + quantity);
+                inventory.put(productName, product);
+            } else {
+                System.out.println("We don't sell this product");
+            }
+        } finally {
+            writeLock.unlock();
         }
     }
 
-    public void productPurchased(String productName, int quantity) {
-        Product product = inventory.get(productName);
-        product.setQuantityLeft(product.getQuantityLeft() - quantity);
-        inventory.put(productName, product);
+    public Map<String, Product> getInventory() {
+        readLock.lock();
+        try {
+            return inventory;
+        } finally {
+            readLock.unlock();
+        }
     }
-
 }

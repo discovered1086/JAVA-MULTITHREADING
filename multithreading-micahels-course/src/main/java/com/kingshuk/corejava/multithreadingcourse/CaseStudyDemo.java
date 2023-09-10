@@ -95,6 +95,10 @@ public class CaseStudyDemo {
     }
 
     private static class PoliceThread extends Thread {
+
+        public PoliceThread(){
+            this.setName(this.getClass().getSimpleName());
+        }
         @SneakyThrows
         @Override
         public void run() {

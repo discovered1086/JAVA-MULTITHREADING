@@ -1,5 +1,7 @@
 package com.kingshuk.multithreading.executors.withexecutors;
 
+import com.google.common.base.Stopwatch;
+
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -11,10 +13,10 @@ public class ExecutorServicePracticeHarness {
 		ExecutorService executorService = Executors.newFixedThreadPool(10);
 		
 		Future<Long> submit = executorService.submit(()-> {
-			Long sum=0l;
+			long sum= 0L;
 						
 			for(int i = 0; i<10;i++) {
-				Long theNumber =0l;
+				long theNumber;
 				theNumber = Math.round(Math.random()*100);
 				System.out.println("First task: Adding number: "+theNumber+" at sequence: "+i);
 				sum +=theNumber;
@@ -24,10 +26,10 @@ public class ExecutorServicePracticeHarness {
 		});
 		
 		Future<Long> submit2 = executorService.submit(()-> {
-			Long sum=0l;
+			long sum= 0L;
 						
 			for(int i = 0; i<10;i++) {
-				Long theNumber =0l;
+				long theNumber;
 				theNumber = Math.round(Math.random()*100);
 				theNumber=theNumber*theNumber;
 				System.out.println("Second task: Adding number: "+theNumber+" at sequence: "+i);
@@ -49,6 +51,8 @@ public class ExecutorServicePracticeHarness {
 		} catch (InterruptedException | ExecutionException e) {
 			e.printStackTrace();
 		}
+
+		executorService.shutdown();
 	}
 
 }

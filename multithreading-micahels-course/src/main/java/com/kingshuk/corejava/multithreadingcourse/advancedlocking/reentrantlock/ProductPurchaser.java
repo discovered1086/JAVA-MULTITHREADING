@@ -1,4 +1,5 @@
-package com.kingshuk.corejava.multithreadingcourse.reentrantlock;
+package com.kingshuk.corejava.multithreadingcourse.advancedlocking.reentrantlock;
+
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -6,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 import java.util.Random;
 
 @RequiredArgsConstructor
-public class InventoryUpdater implements Runnable {
+public class ProductPurchaser implements Runnable {
     @NonNull
     private AmazonInventory amazonInventory;
     private final Random random = new Random();
@@ -19,14 +20,14 @@ public class InventoryUpdater implements Runnable {
                 //This is to simulate a network call or some delay
                 // in getting the product details
                 try {
-                    Thread.sleep(4000);
+                    Thread.sleep(2000);
                 } catch (InterruptedException e) {
                 }
-                amazonInventory.addProductQuantity("Toothbrush", random.nextInt(15000));
-                amazonInventory.addProductQuantity("Chinese Wok", random.nextInt(100));
-                amazonInventory.addProductQuantity("Carpet Cleaner", random.nextInt(150));
-                amazonInventory.addProductQuantity("CounterTop filter", random.nextInt(200));
-                amazonInventory.addProductQuantity("Mountain Bike", random.nextInt(400));
+                amazonInventory.productPurchased("Toothbrush", random.nextInt(500));
+                amazonInventory.productPurchased("Chinese Wok", random.nextInt(50));
+                amazonInventory.productPurchased("Carpet Cleaner", random.nextInt(25));
+                amazonInventory.productPurchased("CounterTop filter", random.nextInt(125));
+                amazonInventory.productPurchased("Mountain Bike", random.nextInt(90));
             } finally {
                 amazonInventory.getProductLock().unlock();
             }

@@ -1,4 +1,5 @@
-package com.kingshuk.corejava.multithreadingcourse.reentrantlock;
+package com.kingshuk.corejava.multithreadingcourse.advancedlocking.reentrantlock;
+
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +18,7 @@ public class AmazonUI implements Runnable {
         while (true) {
             if (amazonInventory.getProductLock().tryLock()) {
                 try {
-                    System.out.println("========================Inventory at: " +
+                    System.out.println("============Viewing user: " + Thread.currentThread().getName() + "============Inventory at: " +
                             LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME) + "==========================");
                     amazonInventory.getInventory().keySet().forEach(key -> System.out.println("Item: " + key + ", Available quantity: " +
                             amazonInventory.getInventory().get(key).getQuantityLeft() + "\n"));

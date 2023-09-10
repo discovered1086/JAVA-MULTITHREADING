@@ -14,7 +14,7 @@ plugins {
 sourceCompatibility = '1.8'
 
 repositories {
-  mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
@@ -26,6 +26,8 @@ dependencies {
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
-	
-	compile group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
+
+    compile group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
+
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
 }

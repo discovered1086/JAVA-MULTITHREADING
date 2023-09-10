@@ -1,4 +1,5 @@
-package com.kingshuk.corejava.multithreadingcourse.reentrantlock;
+package com.kingshuk.corejava.multithreadingcourse.advancedlocking.reentrantlock;
+
 
 public class TheMainThread {
 

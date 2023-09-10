@@ -11,7 +11,7 @@ public class ProducerConsumerTest {
 }
 class Producer extends Thread
 {
-	Counter c ; 
+	final Counter c ;
 	Producer(Counter c)
 	{
 		this.c = c;
@@ -24,7 +24,7 @@ class Producer extends Thread
 			Thread.sleep(100);
 			synchronized(c)
 			{
-			c.notify();
+			c.notifyAll();
 			System.out.println("Incrementd Counter" );
     		c.increment();
 	        c.wait();
@@ -42,19 +42,21 @@ class Producer extends Thread
 
 class Consumer extends Thread
 {
-	Counter c;
+	final Counter c;
 	Consumer(Counter c)
 	{
 		this.c = c;
 		start();
 	}
+
+	@Override
  	public void run()
  	{
  		while(true){
  			try{
  			synchronized(c)
  			{
- 				c.notify();
+ 				c.notifyAll();
  				System.out.println("Get Incrementd Value" + c.getCount());
  				c.wait();
  			}
