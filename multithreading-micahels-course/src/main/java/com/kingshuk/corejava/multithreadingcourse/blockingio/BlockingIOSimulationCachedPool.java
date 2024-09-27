@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.*;
 
-public class BlockingIOSimulation {
-    private static final int NUMBER_OF_REQUESTS = 10000;
+public class BlockingIOSimulationCachedPool {
+    private static final int NUMBER_OF_REQUESTS = 500000;
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -22,18 +22,12 @@ public class BlockingIOSimulation {
 
     private static void processRequests() {
         List<Future<?>> futures = new ArrayList<>();
-        ExecutorService service = Executors.newFixedThreadPool(1000);
+
+        ExecutorService service = Executors.newCachedThreadPool();
         try {
             for (int i = 0; i < NUMBER_OF_REQUESTS; i++) {
-                futures.add(service.submit(BlockingIOSimulation::blockingIOOperation));
+                futures.add(service.submit(BlockingIOSimulationCachedPool::blockingIOOperation));
             }
-//            for (int i = 0; i < NUMBER_OF_REQUESTS; i++) {
-//                futures.add(service.submit(() ->{
-//                    for(int j = 0; j < 100; j++){
-//                        blockingIOOperation();
-//                    }
-//                }));
-//            }
 
             for (Future<?> future : futures) {
                 try {
@@ -52,8 +46,7 @@ public class BlockingIOSimulation {
     private static void blockingIOOperation() {
         System.out.println("Thread executing the current request: " + Thread.currentThread());
         try {
-//            TimeUnit.MILLISECONDS.sleep(10);
-            TimeUnit.MILLISECONDS.sleep(1000);
+            TimeUnit.SECONDS.sleep(1);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
